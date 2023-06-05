@@ -6,14 +6,11 @@ export class Formulario extends HTMLElement{
         super();
     }  
 
-
     async components(){
         return await (await fetch("./components/form/formulario.html")).text();
     }
 
      connectedCallback(){
-
-        console.log(this.components());
         this.components().then((res) => this.innerHTML = res); 
     }
 
