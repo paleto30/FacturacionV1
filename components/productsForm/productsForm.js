@@ -1,7 +1,4 @@
 
-
-
-
 export class formProductos extends HTMLElement{
 
     constructor(){
@@ -15,23 +12,26 @@ export class formProductos extends HTMLElement{
     }
 
     crearNodo(){
-        let clone =  this.querySelector("#rawP");
-      
-        clone.querySelectorAll('input','label').forEach(element => {
+        let element =  this.querySelector("#raw_0");
+        let clone = element.cloneNode(true);
+        let idclone = clone.id.slice(0,-1);
+        clone.id = idclone+`${this.contador+1}`
+        clone.querySelectorAll('input').forEach(element => {
             let newId = element.id.slice(0,-1);
             element.id = newId+`${this.contador+1}`;
             element.name = newId+`${this.contador+1}`;
-            
         });
         this.contador ++;
         return clone;
     }   
 
     add(e){
+
         let hijo = this.crearNodo();
-        console.log(hijo.parentNode);
-        console.log(typeof(hijo.parentNode));
-        //this.querySelector("list").insertAdjacentHTML("beforeend",hijo.parentNode)
+        console.log(hijo);
+        console.log(typeof(hijo));
+        //console.log(typeof(hijo.parentNode));}
+        this.querySelector("#list").appendChild(hijo);
     }
 
     connectedCallback(){
