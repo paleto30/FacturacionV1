@@ -16,4 +16,4 @@ export class Formulario extends HTMLElement{
 
 }
 
-customElements.define("form-1",Formulario);
+customElements.define("seccion-factura",Formulario);

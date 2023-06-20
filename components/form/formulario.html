@@ -8,14 +8,15 @@
 
   <div class="row mx-auto ">
     <div class="container">
-      <form id="formFactura">
+      <div id="datosFactura">
+
         <!-- primera fila de datos -->
         <div class="row">
           <!-- col-1 -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
-              <label for="nrFactura" class="form-label">Nro Factura:</label>
-              <input type="number" name="nrFactura" class="form-control input-sm" id="nrFactura"
+              <label for="codigo_factura" class="form-label">Nro Factura:</label>
+              <input type="number" name="codigo_factura" class="form-control input-sm" id="codigo_factura"
                 aria-describedby="emailHelp" required>
             </div>
           </div>
@@ -23,8 +24,8 @@
           <!-- col2 -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
-              <label for="fechaFactura" class="form-label">Fecha de factura:</label>
-              <input type="datetime-local" name="fecha" class="form-control input-sm" id="fechaFactura"
+              <label for="fecha" class="form-label">Fecha de factura:</label>
+              <input type="datetime-local" name="fecha" class="form-control input-sm" id="fecha"
                 aria-describedby="emailHelp" required>
             </div>
           </div>
@@ -32,8 +33,8 @@
           <!-- col3 -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
-              <label for="vendedor" class="form-label">Vendedor:</label>
-              <input type="text" name="vendedor" class="form-control input-sm" id="vendedor"
+              <label for="nombre_vendedor" class="form-label">Vendedor:</label>
+              <input type="text" name="nombre_vendedor" class="form-control input-sm" id="nombre_vendedor"
                 aria-describedby="emailHelp" required>
             </div>
           </div>
@@ -44,8 +45,8 @@
           <!-- col-1 -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
-              <label for="idCliente" class="form-label">Nro identificación cliente:</label>
-              <input type="number" name="idCliente" class="form-control input-sm" id="idCliente"
+              <label for="cedula" class="form-label">Nro identificación cliente:</label>
+              <input type="text" name="cedula" class="form-control input-sm" id="cedula"
                 aria-describedby="emailHelp" required>
             </div>
           </div>
@@ -53,8 +54,8 @@
           <!-- col-2 -->
           <div class="col-12 col-md-4">
             <div class="mb-3">
-              <label for="cliente" class="form-label">Nombre y apellidos:</label>
-              <input type="text" name="nombre" class="form-control input-sm" id="cliente" aria-describedby="emailHelp"
+              <label for="nombre" class="form-label">Nombre y apellidos:</label>
+              <input type="text" name="nombre" class="form-control input-sm" id="nombre" aria-describedby="emailHelp"
                 required>
             </div>
           </div>
@@ -85,13 +86,12 @@
           <div class="col-12 col-md-4 ">
             <div class="mb-3">
               <label for="telefono" class="form-label">Teléfono de contacto:</label>
-              <input type="number" name="idCliente" class="form-control input-sm" id="telefono"
+              <input type="number" name="telefono" class="form-control input-sm" id="telefono"
                 aria-describedby="emailHelp" required>
             </div>
           </div>
         </div>
-
-      </form>
+      </div>
     </div>
   </div>
 </div>

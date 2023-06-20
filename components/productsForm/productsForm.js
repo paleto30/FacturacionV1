@@ -19,16 +19,11 @@ export class formProductos extends HTMLElement{
 
     crearNodo(){
         let element =  this.querySelector("#raw_0");
+
         let clone = element.cloneNode(true);
         let idclone = clone.id.slice(0,-1);
         clone.id = idclone+`${this.contador+1}`
-        clone.querySelectorAll('input').forEach(element => {
-            let newId = element.id.slice(0,-1);
-            element.id = newId+`${this.contador+1}`;
-            element.name = newId+`${this.contador+1}`;
-        });
-        clone.classList.remove("first")
-
+        
         this.contador ++;
         return clone;
     }   
@@ -52,11 +47,16 @@ export class formProductos extends HTMLElement{
             cantidad.value ++;
         }else if (e.target.classList.contains("btnRest")){
             let nodos = e.target.parentNode.parentNode;
-            if (nodos.id !== 'raw_0' && nodos.id !== 'raw_1') { 
-                nodos.remove();
-                this.contador = nodos.id.charAt(nodos.id.length  -1) -1;
+            console.log(nodos.id);
+            if (nodos.id === `raw_${this.contador}`) { 
+                if (nodos.id !== 'raw_0') {
+                    nodos.remove();
+                    this.contador = nodos.id.charAt(nodos.id.length  -1) -1;
+                }else{
+                    alert("¡ Debe existir como minimo un producto !")
+                }
             }else{
-                alert("¡ Debe existir como minimo un producto !")
+                alert("debes eeliminar el ultimo");
             }
         }
     }
@@ -70,15 +70,13 @@ export class formProductos extends HTMLElement{
 
 
     enviarFactura(e){
-        let body = this.parentElement.parentElement.parentElement.parentElement;
-        let nodo = body.querySelector("#formPadre");
-        let formH = nodo.querySelector("#formFactura"); 
-        let formP = this.querySelector("#formProducts")
-        const inputsH = formH.getElementsByTagName('input');
-        const inputsP = formP.getElementsByTagName("input");
         
-        console.log("formH: ", inputsH , "\n\nFormP: ", inputsP);
-    
+        let factura = document.querySelector("#datosFactura");
+        let productos = document.querySelector("#list");
+        const dataF = factura.getElementsByTagName('input');
+        const dataP = productos.getElementsByTagName('input');
+        //console.log(dataF);
+        console.log(dataP);
     }
 
     connectedCallback(){
@@ -87,7 +85,6 @@ export class formProductos extends HTMLElement{
             this.innerHTML = res;
             let html = await this.raw();
             this.list = this.querySelector("#list").innerHTML = html;
-            this.list = this.querySelector("#list").insertAdjacentElement("beforeend",this.crearNodo());
             this.querySelector("#list").addEventListener("click",this.sumar(this));
             this.querySelector("#add").addEventListener("click",this.add.bind(this));
             this.querySelector("#facturar").addEventListener("click",this.enviarFactura.bind(this)); 
@@ -97,4 +94,4 @@ export class formProductos extends HTMLElement{
     }
 }
 
-customElements.define("form-productos",formProductos);
+customElements.define("seccion-productos",formProductos);
