@@ -82,18 +82,39 @@ export class formProductos extends HTMLElement {
     }
 
 
+    // funcion para capturar los datos de los inputs  de la factura
     enviarFactura(e) {
 
         let factura = document.querySelector("#datosFactura");
         let productos = document.querySelector("#list");
         const dataF = factura.getElementsByTagName('input');
         const dataP = productos.getElementsByTagName('input');
-        console.log(dataF);
-        console.log(dataP);
+
+        const objectProducts = [];
+        let product = {}
+        
+        Array.from(dataP).forEach((val,id) =>{
+            if(id%2==0){
+                if(val.name == "cantidad"){
+                    product[`${val.name}`]= val.value;
+                    objectProducts.push(product);
+                    product = {};
+                }else{
+                    product[`${val.name}`]= val.value;
+                }
+                
+            }
+            
+    
+        })
+
+        console.log(objectProducts);
+        //console.log(dataF);
+        //console.log(dataP);
     }
 
 
-
+    // funcion para cargar los datos del producto cuando reconoce el codigo
     loadProductos(e) {
         ///console.log(e.target.classList.contains("loadProduct"));
         if (e.target.classList.contains("loadProduct")) {
@@ -104,10 +125,11 @@ export class formProductos extends HTMLElement {
 
             cod_producto.addEventListener('input',async(e)=>{
                 
+                
                 let input =  e.target;
                 input.value = input.value.toUpperCase();
 
-                const data = await loadProducto(input.value);
+                const data = await loadProducto(cod_producto.value);
                 if (!data.data) {
                     element.querySelector(`#nombre_producto_${id}`).value = data.nombre_producto;
                     element.querySelector(`#valor_unidad_${id}`).value = data.valor_unidad
