@@ -4,6 +4,3 @@ import '../components/division/division.js';
 import '../components/productsForm/productsForm.js';
 
 
-
-
-
