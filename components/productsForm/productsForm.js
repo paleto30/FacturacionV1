@@ -1,6 +1,6 @@
 import {
-getAllProductos,
-loadProducto
+loadProducto,
+loadCliente
 
 } from "../../api/api.js";
 
@@ -96,7 +96,7 @@ export class formProductos extends HTMLElement {
         Array.from(dataP).forEach((val,id) =>{
             if(id%2==0){
                 if(val.name == "cantidad"){
-                    product[`${val.name}`]= val.value;
+                    product[`${val.name}`] = val.value;
                     objectProducts.push(product);
                     product = {};
                 }else{
@@ -104,9 +104,7 @@ export class formProductos extends HTMLElement {
                 }
                 
             }
-            
-    
-        })
+        });
 
         console.log(objectProducts);
         //console.log(dataF);
@@ -144,6 +142,44 @@ export class formProductos extends HTMLElement {
 
 
 
+    loadCliente(e){
+
+        if (e.target.classList.contains('cedulas')) {
+            
+            const datosFactura =  e.srcElement.parentNode.parentNode.parentNode.parentNode;
+
+            let clienteCedula = datosFactura.querySelector("#cedula");
+            let clienteNombre = datosFactura.querySelector("#nombre");
+            let clienteCorreo = datosFactura.querySelector("#correo");
+            let clienteDireccion = datosFactura.querySelector("#direccion");
+            let clienteTelefono = datosFactura.querySelector("#telefono");
+
+            clienteCedula.addEventListener('input', async (e) =>{
+
+                const cliente = await loadCliente(clienteCedula.value);
+
+                if (!cliente.message) {
+                    clienteCedula.value = cliente.cedula
+                    clienteNombre.value = cliente.nombre;
+                    clienteCorreo.value = cliente.correo;
+                    clienteDireccion.value = cliente.direccion;
+                    clienteTelefono.value = cliente.telefono;
+                }else{
+
+                    clienteNombre.value = '';
+                    clienteCorreo.value = '';
+                    clienteDireccion.value = '';
+                    clienteTelefono.value = '';
+                }
+                
+
+            }) 
+            
+        }
+        
+
+    }
+
 
 
     connectedCallback() {
@@ -156,6 +192,7 @@ export class formProductos extends HTMLElement {
             this.querySelector("#add").addEventListener("click", this.add.bind(this));
             this.querySelector("#facturar").addEventListener("click", this.enviarFactura.bind(this));
             this.querySelector("#list").addEventListener("click", this.loadProductos.bind(this));
+            document.querySelector("#datosFactura").addEventListener('click',this.loadCliente.bind(this));
         });
 
 

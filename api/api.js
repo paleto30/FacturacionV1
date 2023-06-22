@@ -17,13 +17,26 @@ export const getAllProductos = async()=>{
 }
 
 
-export const loadProducto = async($cod_producto) => {
+export const loadProducto = async(cod_producto) => {
 
     try {
-        const dato = await fetch(`${endpoint}/producto/load?cod_producto=${$cod_producto}`);
+        const dato = await fetch(`${endpoint}/producto/load?cod_producto=${cod_producto}`);
         const res = await dato.json();
         return res;
     } catch (error) {
         console.log(error);
     }
+}
+
+
+export const loadCliente = async (cedula)=>{
+
+    try {
+        const dato = await fetch(`${endpoint}/cliente/load?cedula=${cedula}`); 
+        const result = dato.json();
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+
 }
