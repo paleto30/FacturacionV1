@@ -172,8 +172,7 @@ export class formProductos extends HTMLElement {
                     clienteTelefono.value = '';
                 }
                 
-
-            }) 
+            });
             
         }
         
